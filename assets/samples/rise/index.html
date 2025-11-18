@@ -322,7 +322,14 @@
     .summary-footer strong {
       color: #e5e7eb;
     }
-
+    /* Ensure Lesson 3 (knowledge check) text stays light on dark background */
+    #kc-block,
+    #kc-block p,
+    #kc-block h4,
+    #kc-block .kc-option span.label,
+    #kc-block .kc-feedback {
+    color: #e5e7eb !important; /* soft white */
+    }
     @media (max-width: 700px) {
       .hero {
         padding-inline: 16px;
@@ -332,7 +339,7 @@
       }
       .lesson-block {
         border-radius: 18px;
-      }#kc-block, 
+      
         #kc-block p, 
         #kc-block h4, 
         #kc-block .kc-option span.label, 
