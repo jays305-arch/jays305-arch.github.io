@@ -1,15 +1,1047 @@
-<section class="project">
-  <h1>Interactive Compliance Training – Storyline Sample</h1>
-  <p>
-    This demo module showcases my approach to building scenario-based eLearning in
-    Articulate Storyline. Learners move through realistic situations, make decisions,
-    and receive targeted feedback intended to drive real behavior change, not just
-    quiz scores.
-  </p>
-  <ul>
-    <li>Branching scenarios with multiple decision paths</li>
-    <li>Layered feedback explaining correct and incorrect choices</li>
-    <li>Embedded knowledge checks and a scored final assessment</li>
-    <li>HTML5 export suitable for LMS deployment</li>
-  </ul>
-</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Compliance Training – Sample Module</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+      --success: #4ade80;
+      --border: rgba(148, 163, 184, 0.25);
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.8);
+      --radius-xl: 22px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1040px;
+      min-height: 620px;
+      background: radial-gradient(circle at top left, #111827 0, #020617 50%);
+      border-radius: 30px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.16), transparent 55%),
+        radial-gradient(circle at 110% -10%, rgba(56, 189, 248, 0.12), transparent 50%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .chrome {
+      position: relative;
+      z-index: 2;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .chrome-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff, #fecaca);
+      opacity: 0.9;
+    }
+    .dot:nth-child(2) { background: radial-gradient(circle at 30% 30%, #fff, #fed7aa); }
+    .dot:nth-child(3) { background: radial-gradient(circle at 30% 30%, #fff, #bbf7d0); }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .title-block h1 {
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0;
+      color: #e5e7eb;
+    }
+
+    .title-block span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .badge {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-strong);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.24), transparent 60%);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-pill {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f97316, #facc15);
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.9);
+    }
+
+    .chrome-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.2fr);
+      gap: 18px;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    @media (max-width: 900px) {
+      .chrome-main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .stage {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, #020617, #020617);
+      border: 1px solid var(--border);
+      padding: 20px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.85), transparent 65%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .stage-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .stage-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stage-label::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(to right, rgba(148, 163, 184, 0.2), rgba(56, 189, 248, 0.9));
+    }
+
+    .screen-title {
+      font-size: 21px;
+      line-height: 1.2;
+      margin: 0;
+      color: #f9fafb;
+    }
+
+    .screen-subtitle {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .screen-body {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .screen-body strong {
+      color: #f9fafb;
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .option-btn {
+      text-align: left;
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.08s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .option-btn span.label {
+      flex: 1;
+    }
+
+    .option-btn span.key {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .option-btn:hover {
+      border-color: var(--accent);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.22), #020617);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.65);
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent-strong);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.26), #020617);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.75);
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+    }
+
+    .option-btn.incorrect {
+      border-color: var(--danger);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-size: 13px;
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      display: none;
+    }
+
+    .feedback.visible {
+      display: block;
+    }
+
+    .feedback-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .feedback.correct .feedback-title {
+      color: var(--success);
+    }
+
+    .feedback.incorrect .feedback-title {
+      color: var(--danger);
+    }
+
+    .feedback-body {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .nav-row {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 15px;
+      font-size: 13px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.06s ease,
+        box-shadow 0.16s ease;
+    }
+
+    .btn-primary {
+      border-color: var(--accent-strong);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #0b1120;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--accent-strong), #22c55e);
+      border-color: #22c55e;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 38px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.96);
+      border-color: var(--accent);
+    }
+
+    .btn[disabled] {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #22c55e);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+      transition: width 0.3s ease;
+    }
+
+    .sidebar {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), #020617);
+      border: 1px solid var(--border);
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .sidebar-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .scenario-list {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .scenario-pill {
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #e5e7eb;
+    }
+
+    .scenario-pill .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .scenario-pill .meta span.label {
+      font-size: 12px;
+    }
+
+    .scenario-pill .meta span.caption {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .scenario-pill .status {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+    }
+
+    .scenario-pill.completed .status {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .scenario-pill.current {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    .scenario-pill.current .status {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+
+    .score-card {
+      margin-top: 4px;
+      border-radius: 18px;
+      padding: 10px 11px;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.24), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .score-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .score-main strong {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .score-main span {
+      font-size: 12px;
+      color: #d1d5db;
+    }
+
+    .score-pill {
+      min-width: 72px;
+      text-align: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 12px;
+    }
+
+    .score-pill span {
+      display: block;
+    }
+
+    .score-pill span.value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--success);
+    }
+
+    .helper {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .helper-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #22c55e, #22c55e);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="chrome">
+      <div class="chrome-header">
+        <div class="window-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="title-block">
+          <h1>Interactive Compliance Training</h1>
+          <span>Scenario-based microlearning · Sample module</span>
+        </div>
+        <span class="badge">
+          <span class="badge-pill"></span>
+          Scenario · Decision-based
+        </span>
+      </div>
+
+      <div class="chrome-main">
+        <section class="stage" aria-live="polite">
+          <div class="stage-inner">
+            <div class="stage-label">Learner view</div>
+            <div id="screen-container">
+              <!-- Screens are injected here -->
+            </div>
+            <div class="nav-row">
+              <div class="progress">
+                <span id="progress-label">Intro</span>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button class="btn btn-ghost" id="btn-prev">
+                  ◀ Back
+                </button>
+                <button class="btn btn-primary" id="btn-next">
+                  Next ▶
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <div>
+            <div class="sidebar-section-title">Module overview</div>
+            <div style="font-size: 13px; color: #e5e7eb; margin-bottom: 6px;">
+              You’ll review three short workplace scenarios and decide how to respond.
+              Each choice includes feedback tied to compliance best practices.
+            </div>
+            <div class="pill-row">
+              <span class="pill">Code of conduct</span>
+              <span class="pill">Ethics</span>
+              <span class="pill">Risk awareness</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="sidebar-section-title">Scenario map</div>
+            <div class="scenario-list" id="scenario-list">
+              <!-- Scenario pills injected here -->
+            </div>
+          </div>
+
+          <div class="score-card">
+            <div class="score-main">
+              <strong>Knowledge check</strong>
+              <span id="score-caption">Complete all scenarios to see your score.</span>
+            </div>
+            <div class="score-pill">
+              <span>Score</span>
+              <span class="value" id="score-value">0 / 3</span>
+            </div>
+          </div>
+
+          <div class="helper">
+            <span class="helper-dot"></span>
+            <span>Tip: Select an option to reveal feedback, then click Next to advance.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SCREENS = [
+      {
+        id: "intro",
+        type: "intro",
+        title: "Welcome to the microlearning",
+        subtitle: "Code of conduct & day-to-day decisions",
+        body: `In this short module, you'll step into everyday situations where
+          a small decision can have a big impact on compliance, culture, and trust.
+          Each scenario is based on common patterns that appear across organizations.`,
+        extra: `Read each scenario carefully, pick the response you would most likely choose,
+          and then compare it to the recommended best practice.`
+      },
+      {
+        id: "scenario1",
+        type: "scenario",
+        scenarioId: 1,
+        title: "Scenario 1 · Gift from a vendor",
+        subtitle: "Conflict of interest · Accepting gifts",
+        body: `A long-time vendor sends you a high-end pair of headphones as a
+          “thank you” for renewing their contract. The gift was shipped to your home
+          address and is not widely known inside the company.`,
+        question: "What is the most appropriate action?",
+        options: [
+          {
+            id: "1a",
+            label: "Keep the gift since the contract is already signed and it won’t influence future decisions.",
+            correct: false,
+            feedback: "Even if the contract is final, accepting a high-value gift can create the appearance of impropriety. Per most codes of conduct, this should be declined or reported."
+          },
+          {
+            id: "1b",
+            label: "Check the company’s gift policy and report the gift to your manager or compliance contact.",
+            correct: true,
+            feedback: "Correct. Reviewing policy and disclosing the gift protects you and the organization. In many cases, the gift can be returned or donated."
+          },
+          {
+            id: "1c",
+            label: "Say nothing and quietly donate the gift so you personally don’t benefit.",
+            correct: false,
+            feedback: "Donating the gift avoids personal benefit but does not address the underlying compliance risk. Transparency and documentation are key."
+          }
+        ]
+      },
+      {
+        id: "scenario2",
+        type: "scenario",
+        scenarioId: 2,
+        title: "Scenario 2 · Sensitive information in public",
+        subtitle: "Data protection · Conversations in open areas",
+        body: `You’re traveling for work and taking a call in a coffee shop. A colleague
+          begins sharing specific details about an upcoming investigation, including names
+          and internal timelines, while people are seated nearby.`,
+        question: "What should you do in the moment?",
+        options: [
+          {
+            id: "2a",
+            label: "Lower your voice and continue the conversation, avoiding the use of names.",
+            correct: false,
+            feedback: "Lowering your voice helps, but sensitive information should not be discussed in public spaces where it can be overheard."
+          },
+          {
+            id: "2b",
+            label: "Suggest rescheduling or moving the call to a private location, and explain why.",
+            correct: true,
+            feedback: "Correct. Protecting confidential information includes where and how it is discussed. Proposing a private setting models good data protection behavior."
+          },
+          {
+            id: "2c",
+            label: "Move to a corner table and turn away from others while the conversation continues.",
+            correct: false,
+            feedback: "Changing seats reduces exposure but still leaves risk. The stronger choice is to pause the conversation until you can speak privately."
+          }
+        ]
+      },
+      {
+        id: "scenario3",
+        type: "scenario",
+        scenarioId: 3,
+        title: "Scenario 3 · Questionable time reporting",
+        subtitle: "Integrity · Accurate records",
+        body: `A teammate jokes that they “always round up” their time on certain projects
+          because “it all evens out.” They hint that leadership unofficially expects people
+          to do this to hit billing targets.`,
+        question: "What is the best response?",
+        options: [
+          {
+            id: "3a",
+            label: "Ignore the comment—this is how things work here and it’s not your responsibility.",
+            correct: false,
+            feedback: "Ignoring potential misreporting can allow risk to grow for both individuals and the organization."
+          },
+          {
+            id: "3b",
+            label: "Remind them that time and records must be accurate, and suggest they check with a manager or compliance.",
+            correct: true,
+            feedback: "Correct. Reinforcing accurate reporting and directing them to official guidance supports both integrity and accountability."
+          },
+          {
+            id: "3c",
+            label: "Privately adopt the same approach so your own numbers stay competitive.",
+            correct: false,
+            feedback: "Matching non-compliant behavior exposes you to personal and professional risk. Policies typically require accurate, honest records."
+          }
+        ]
+      },
+      {
+        id: "summary",
+        type: "summary",
+        title: "Nice work—here’s your recap",
+        subtitle: "Small choices, big impact",
+        body: `In each scenario, the recommended response prioritized transparency,
+          privacy, and integrity. These principles are at the heart of most codes of
+          conduct, regardless of the organization or industry.`,
+        extra: `Use this module as a starting point: in a full course, each decision
+          could be tied to your specific policies, reporting channels, and examples
+          from your own environment.`
+      }
+    ];
+
+    const scenarioMeta = [
+      { id: 1, title: "Gift from vendor", theme: "Conflict of interest" },
+      { id: 2, title: "Sensitive info in public", theme: "Data protection" },
+      { id: 3, title: "Time reporting", theme: "Integrity" }
+    ];
+
+    let currentIndex = 0;
+    let answers = {};
+    let score = 0;
+
+    const screenContainer = document.getElementById("screen-container");
+    const progressLabel = document.getElementById("progress-label");
+    const progressFill = document.getElementById("progress-fill");
+    const btnPrev = document.getElementById("btn-prev");
+    const btnNext = document.getElementById("btn-next");
+    const scenarioListEl = document.getElementById("scenario-list");
+    const scoreValueEl = document.getElementById("score-value");
+    const scoreCaptionEl = document.getElementById("score-caption");
+
+    function renderScenarioMap() {
+      scenarioListEl.innerHTML = "";
+      scenarioMeta.forEach((meta, index) => {
+        const pill = document.createElement("div");
+        pill.className = "scenario-pill";
+        pill.dataset.scenarioId = meta.id;
+
+        if (currentIndex === index + 1) {
+          pill.classList.add("current");
+        }
+
+        const isCompleted = answers[meta.id] !== undefined;
+        if (isCompleted) {
+          pill.classList.add("completed");
+        }
+
+        pill.innerHTML = \`
+          <div class="meta">
+            <span class="label">Scenario \${meta.id} · \${meta.title}</span>
+            <span class="caption">\${meta.theme}</span>
+          </div>
+          <div class="status">\${isCompleted ? "Done" : "Pending"}</div>
+        \`;
+
+        scenarioListEl.appendChild(pill);
+      });
+    }
+
+    function updateScore() {
+      score = Object.values(answers).filter(Boolean).length;
+      scoreValueEl.textContent = \`\${score} / 3\`;
+      if (score === 0) {
+        scoreCaptionEl.textContent = "Complete all scenarios to see your score.";
+      } else if (score < 3) {
+        scoreCaptionEl.textContent = "Solid progress—review feedback to strengthen decisions.";
+      } else {
+        scoreCaptionEl.textContent = "Excellent—your choices aligned with best-practice responses.";
+      }
+    }
+
+    function renderScreen() {
+      const screen = SCREENS[currentIndex];
+      screenContainer.innerHTML = "";
+
+      if (screen.type === "intro") {
+        renderIntroScreen(screen);
+      } else if (screen.type === "scenario") {
+        renderScenarioScreen(screen);
+      } else if (screen.type === "summary") {
+        renderSummaryScreen(screen);
+      }
+
+      // Update nav buttons
+      btnPrev.disabled = currentIndex === 0;
+      btnNext.textContent = currentIndex === SCREENS.length - 1 ? "Finish ▶" : "Next ▶";
+
+      // Update progress
+      const total = SCREENS.length;
+      const ratio = (currentIndex) / (total - 1);
+      const width = Math.max(10, ratio * 100);
+      progressFill.style.width = \`\${width}%\`;
+
+      if (screen.type === "intro") {
+        progressLabel.textContent = "Intro";
+      } else if (screen.type === "summary") {
+        progressLabel.textContent = "Summary";
+      } else {
+        progressLabel.textContent = \`Scenario \${screen.scenarioId} of 3\`;
+      }
+
+      renderScenarioMap();
+      updateScore();
+    }
+
+    function renderIntroScreen(screen) {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = \`
+        <h2 class="screen-title">\${screen.title}</h2>
+        <p class="screen-subtitle">\${screen.subtitle}</p>
+        <div class="screen-body">
+          <p>\${screen.body}</p>
+          <p>\${screen.extra}</p>
+          <p style="margin-top: 8px; font-size: 13px; color: #9ca3af;">
+            In a production course, this sample could be extended with audio narration,
+            branching by role, and links to your specific policy documents.
+          </p>
+        </div>
+      \`;
+      screenContainer.appendChild(wrapper);
+    }
+
+    function renderScenarioScreen(screen) {
+      const wrapper = document.createElement("div");
+
+      const prevAnswer = answers[screen.scenarioId];
+      const selectedId = prevAnswer ? prevAnswer.chosenId : null;
+
+      wrapper.innerHTML = \`
+        <h2 class="screen-title">\${screen.title}</h2>
+        <p class="screen-subtitle">\${screen.subtitle}</p>
+        <div class="screen-body">
+          <p>\${screen.body}</p>
+          <p><strong>\${screen.question}</strong></p>
+        </div>
+      \`;
+
+      const optionsDiv = document.createElement("div");
+      optionsDiv.className = "options";
+
+      screen.options.forEach((option, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.dataset.optionId = option.id;
+        btn.innerHTML = \`
+          <span class="label">\${option.label}</span>
+          <span class="key">Option \${String.fromCharCode(65 + idx)}</span>
+        \`;
+
+        if (selectedId === option.id) {
+          btn.classList.add("selected");
+          if (prevAnswer.correct) {
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("incorrect");
+          }
+        }
+
+        btn.addEventListener("click", () => {
+          handleOptionClick(screen, option, optionsDiv, feedbackDiv);
+        });
+
+        optionsDiv.appendChild(btn);
+      });
+
+      const feedbackDiv = document.createElement("div");
+      feedbackDiv.className = "feedback";
+      feedbackDiv.innerHTML = \`
+        <div class="feedback-title">Feedback</div>
+        <div class="feedback-body"></div>
+      \`;
+
+      if (prevAnswer) {
+        feedbackDiv.classList.add("visible");
+        if (prevAnswer.correct) {
+          feedbackDiv.classList.add("correct");
+          feedbackDiv.querySelector(".feedback-title").textContent = "Nice work · Recommended response";
+        } else {
+          feedbackDiv.classList.add("incorrect");
+          feedbackDiv.querySelector(".feedback-title").textContent = "Consider this · Better option available";
+        }
+        feedbackDiv.querySelector(".feedback-body").textContent =
+          screen.options.find(o => o.id === prevAnswer.chosenId).feedback;
+      }
+
+      wrapper.appendChild(optionsDiv);
+      wrapper.appendChild(feedbackDiv);
+      screenContainer.appendChild(wrapper);
+    }
+
+    function handleOptionClick(screen, option, optionsDiv, feedbackDiv) {
+      // Clear selection classes
+      optionsDiv.querySelectorAll(".option-btn").forEach(btn => {
+        btn.classList.remove("selected", "correct", "incorrect");
+      });
+
+      // Mark selected
+      const selectedBtn = optionsDiv.querySelector(
+        \`.option-btn[data-option-id="\${option.id}"]\`
+      );
+      selectedBtn.classList.add("selected");
+      selectedBtn.classList.add(option.correct ? "correct" : "incorrect");
+
+      // Store answer
+      answers[screen.scenarioId] = {
+        chosenId: option.id,
+        correct: option.correct
+      };
+
+      // Show feedback
+      feedbackDiv.classList.add("visible");
+      feedbackDiv.classList.toggle("correct", option.correct);
+      feedbackDiv.classList.toggle("incorrect", !option.correct);
+      feedbackDiv.querySelector(".feedback-title").textContent = option.correct
+        ? "Nice work · Recommended response"
+        : "Consider this · Better option available";
+      feedbackDiv.querySelector(".feedback-body").textContent = option.feedback;
+
+      updateScore();
+      renderScenarioMap();
+    }
+
+    function renderSummaryScreen(screen) {
+      const wrapper = document.createElement("div");
+      const total = 3;
+      const correct = score;
+      const pct = Math.round((correct / total) * 100);
+
+      wrapper.innerHTML = \`
+        <h2 class="screen-title">\${screen.title}</h2>
+        <p class="screen-subtitle">\${screen.subtitle}</p>
+        <div class="screen-body">
+          <p>\${screen.body}</p>
+          <p>\${screen.extra}</p>
+        </div>
+        <div class="screen-body" style="margin-top: 12px;">
+          <p><strong>Your sample score: \${correct} out of \${total} (\${pct}%).</strong></p>
+          <p style="font-size: 13px; color: #9ca3af;">
+            In a real deployment, this score could be sent to an LMS or learning
+            record store (LRS) to demonstrate completion and track trends over time.
+          </p>
+        </div>
+      \`;
+
+      screenContainer.appendChild(wrapper);
+    }
+
+    btnPrev.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderScreen();
+      }
+    });
+
+    btnNext.addEventListener("click", () => {
+      if (currentIndex < SCREENS.length - 1) {
+        currentIndex++;
+        renderScreen();
+      } else {
+        currentIndex = 0;
+        renderScreen();
+      }
+    });
+
+    renderScenarioMap();
+    renderScreen();
+  </script>
+</body>
+</html>
