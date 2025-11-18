@@ -4,6 +4,594 @@
 <head><meta charset="utf-8"><title>Rise Sample</title></head>
 <body style="font-family:Arial,sans-serif;padding:40px;">
   <h1>Rise Module Placeholder</h1>
-  <p>This folder is a placeholder representing a Rise export. Replace with the Rise export files (index.html and assets) to host the module.</p>
+  <p>This folder is a placeholder representing a Rise export. Replace with the Rise export files (
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RISE-Style Compliance Microcourse · Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: #0f172a;
+      --panel-soft: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.35);
+      --radius-xl: 24px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #020617 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero {
+      padding: 32px 20px 18px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), transparent 60%),
+                  radial-gradient(circle at top right, rgba(15, 23, 42, 1), #020617);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      font-size: clamp(24px, 3vw, 32px);
+      margin: 2px 0 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      max-width: 600px;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .pill.accent {
+      border-color: rgba(56, 189, 248, 0.7);
+      color: var(--accent-strong);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.24), rgba(15, 23, 42, 0.9));
+    }
+
+    .progress-bar-shell {
+      margin-top: 12px;
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 72%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #22c55e);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
+    }
+
+    .content {
+      padding: 18px 20px 32px;
+    }
+
+    .content-inner {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .lesson-block {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top, var(--panel), var(--panel-soft));
+      border: 1px solid var(--border);
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .block-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .block-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .block-title {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .block-body {
+      font-size: 14px;
+      color: #e5e7eb;
+      line-height: 1.55;
+      margin-top: 6px;
+    }
+
+    .block-body p {
+      margin: 0 0 8px;
+    }
+
+    .block-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      padding: 8px 11px;
+      border-radius: 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    details.accordion {
+      margin-top: 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 11px;
+    }
+
+    details.accordion summary {
+      list-style: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    details.accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-icon {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    details.accordion[open] .accordion-icon {
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .micro-pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--muted);
+    }
+
+    .knowledge-check {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .knowledge-check h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+    }
+
+    .kc-options {
+      display: grid;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .kc-option {
+      padding: 7px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.75);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.06s ease;
+    }
+
+    .kc-option span.label {
+      flex: 1;
+    }
+
+    .kc-option span.key {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .kc-option:hover {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .kc-option.correct {
+      border-color: #22c55e;
+      background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.23), rgba(15, 23, 42, 0.9));
+    }
+
+    .kc-option.incorrect {
+      border-color: #f97373;
+      background: radial-gradient(circle at 0 0, rgba(248, 113, 113, 0.23), rgba(15, 23, 42, 0.9));
+    }
+
+    .kc-feedback {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .summary-footer {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .summary-footer strong {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding-inline: 16px;
+      }
+      .content {
+        padding-inline: 16px;
+      }
+      .lesson-block {
+        border-radius: 18px;
+      }#kc-block, 
+        #kc-block p, 
+        #kc-block h4, 
+        #kc-block .kc-option span.label, 
+        #kc-block .kc-feedback {
+          color: #e5e7eb !important; /* soft white */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Sample microcourse · RISE-style layout</div>
+        <h1 class="hero-title">Everyday Compliance Decisions</h1>
+        <p class="hero-subtitle">
+          A scrolling, RISE-inspired microcourse that walks learners through short
+          content blocks, reflection prompts, and a quick knowledge check—ideal for
+          just-in-time compliance refreshers.
+        </p>
+        <div class="hero-meta">
+          <span class="pill accent">Scenario-based</span>
+          <span class="pill">5–8 minutes</span>
+          <span class="pill">Code of conduct</span>
+          <span class="pill">HTML · CSS</span>
+        </div>
+        <div class="progress-bar-shell">
+          <span>Module Progress</span>
+          <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="content-inner">
+
+        <!-- Block 1: Overview -->
+        <section class="lesson-block">
+          <div class="block-header">
+            <div>
+              <div class="block-label">Lesson 1 · Overview</div>
+              <h2 class="block-title">Why small decisions matter</h2>
+            </div>
+          </div>
+          <div class="block-body">
+            <p>
+              Most compliance issues don’t start with a headline-making decision. They
+              begin with a small moment: a casual offer, a quick shortcut, or a quiet
+              assumption that “this is probably fine.” Those are the moments where your
+              choices matter most.
+            </p>
+            <p>
+              This microcourse highlights everyday situations where your response can
+              either reduce risk or unintentionally increase it. As you scroll, pause to
+              imagine what you would realistically do in your role, not just what the
+              “textbook” answer might be.
+            </p>
+            <div class="highlight">
+              <strong>Reflection prompt:</strong> Think of a time you noticed something
+              that felt slightly off—maybe a comment, a shortcut, or an informal
+              workaround. What did you do? What would you do now?
+            </div>
+          </div>
+        </section>
+
+        <!-- Block 2: Scenario strip -->
+        <section class="lesson-block">
+          <div class="block-header">
+            <div>
+              <div class="block-label">Lesson 2 · Fast scenarios</div>
+              <h2 class="block-title">Three everyday risk moments</h2>
+            </div>
+          </div>
+          <div class="block-body">
+            <p>
+              Here are three simplified versions of situations that show up frequently
+              across organizations. You may recognize elements of these from your own
+              work, even if the details differ.
+            </p>
+
+            <details class="accordion" open>
+              <summary>
+                Gift from a vendor
+                <span class="accordion-icon">▶</span>
+              </summary>
+              <div class="accordion-body">
+                A long-time vendor sends you a high-end personal gift after a contract is
+                renewed. Nothing is said about expectations, but it feels generous.
+                <div class="pill-row">
+                  <span class="micro-pill">Conflict of interest</span>
+                  <span class="micro-pill">Appearance vs. intent</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="accordion">
+              <summary>
+                Sensitive info in public
+                <span class="accordion-icon">▶</span>
+              </summary>
+              <div class="accordion-body">
+                You’re on a call in a public place while a colleague shares specifics
+                about an investigation, including names and timelines. People nearby can
+                clearly hear parts of the conversation.
+                <div class="pill-row">
+                  <span class="micro-pill">Confidentiality</span>
+                  <span class="micro-pill">Data protection</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="accordion">
+              <summary>
+                “Rounded” time reporting
+                <span class="accordion-icon">▶</span>
+              </summary>
+              <div class="accordion-body">
+                A teammate mentions they often “round up” hours to match expectations and
+                hints that “everyone does it.” They seem confident this is normal.
+                <div class="pill-row">
+                  <span class="micro-pill">Integrity</span>
+                  <span class="micro-pill">Accurate records</span>
+                </div>
+              </div>
+            </details>
+
+            <div class="highlight">
+              <strong>Try this:</strong> For each scenario, note how you would respond
+              today. Then compare your instinct to your organization's written policy or
+              code of conduct.
+            </div>
+          </div>
+        </section>
+
+        <!-- Block 3: Knowledge check -->
+        <section class="lesson-block" id="kc-block">
+          <div class="block-header">
+            <div>
+              <div class="block-label">Lesson 3 · Knowledge check</div>
+              <h2 class="block-title">Putting principles into practice</h2>
+            </div>
+          </div>
+          <div class="block-body">
+            <p>
+              Below is a single scenario-style question that brings together the themes
+              from above. Choose the response that best reflects a compliance-first
+              mindset.
+            </p>
+
+            <div class="knowledge-check">
+              <h4>Question</h4>
+              <p style="margin-bottom: 6px;">
+                A vendor sends you an expensive gift at home after a successful project.
+                What is the best first step?
+              </p>
+
+              <div class="kc-options">
+                <button class="kc-option" data-correct="false">
+                  <span class="label">
+                    Accept the gift quietly since the project is complete and your
+                    decisions are no longer influenced.
+                  </span>
+                  <span class="key">A</span>
+                </button>
+                <button class="kc-option" data-correct="true">
+                  <span class="label">
+                    Review the gift policy and disclose the situation to your manager or
+                    compliance contact before deciding what to do.
+                  </span>
+                  <span class="key">B</span>
+                </button>
+                <button class="kc-option" data-correct="false">
+                  <span class="label">
+                    Donate the gift privately so you don’t personally benefit, but avoid
+                    raising it formally.
+                  </span>
+                  <span class="key">C</span>
+                </button>
+              </div>
+
+              <div class="kc-feedback" id="kc-feedback">
+                <!-- Filled by script -->
+              </div>
+            </div>
+
+            <div class="summary-footer">
+              <p>
+                <strong>In a full course:</strong> this block could be extended with
+                scored tracking, multiple questions, and branching based on the
+                decisions you make.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Block 4: Wrap-up -->
+        <section class="lesson-block">
+          <div class="block-header">
+            <div>
+              <div class="block-label">Lesson 4 · Wrap-up</div>
+              <h2 class="block-title">Turning awareness into habit</h2>
+            </div>
+          </div>
+          <div class="block-body">
+            <p>
+              Awareness is the first step; habits are what sustain a strong culture of
+              compliance. The next time you’re in a gray area, slow down and ask:
+            </p>
+            <ul style="margin: 4px 0 8px 18px; padding: 0; font-size: 13px;">
+              <li>Would I be comfortable if this decision were on the front page?</li>
+              <li>Does this align with our written policy and values?</li>
+              <li>Do I need guidance from a manager, HR, or compliance?</li>
+            </ul>
+            <p>
+              When in doubt, ask early. Most issues are far easier to resolve at the
+              “small decision” stage than after they’ve become a pattern.
+            </p>
+            <div class="highlight">
+              This sample is intentionally lightweight: a single HTML file that mimics a
+              RISE-style scrolling lesson. It can be embedded, re-themed, or extended for
+              your own compliance topics.
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const options = document.querySelectorAll(".kc-option");
+    const feedbackEl = document.getElementById("kc-feedback");
+
+    options.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        options.forEach(o => o.classList.remove("correct", "incorrect"));
+        const isCorrect = btn.dataset.correct === "true";
+        btn.classList.add(isCorrect ? "correct" : "incorrect");
+
+        if (isCorrect) {
+          feedbackEl.textContent =
+            "Correct. Checking policy and disclosing the gift protects both you and the organization. From there, you can follow the recommended next steps (return, donate, etc.).";
+        } else {
+          feedbackEl.textContent =
+            "Consider a more transparent option. Quietly accepting or donating the gift may feel harmless, but it skips the crucial step of disclosure and policy alignment.";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+index.html and assets) to host the module.</p>
 </body>
 </html>
