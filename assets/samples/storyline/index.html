@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -823,13 +822,13 @@
           pill.classList.add("completed");
         }
 
-        pill.innerHTML = \`
+        pill.innerHTML = `
           <div class="meta">
-            <span class="label">Scenario \${meta.id} · \${meta.title}</span>
-            <span class="caption">\${meta.theme}</span>
+            <span class="label">Scenario ${meta.id} · ${meta.title}</span>
+            <span class="caption">${meta.theme}</span>
           </div>
-          <div class="status">\${isCompleted ? "Done" : "Pending"}</div>
-        \`;
+          <div class="status">${isCompleted ? "Done" : "Pending"}</div>
+        `;
 
         scenarioListEl.appendChild(pill);
       });
@@ -837,7 +836,7 @@
 
     function updateScore() {
       score = Object.values(answers).filter(Boolean).length;
-      scoreValueEl.textContent = \`\${score} / 3\`;
+      scoreValueEl.textContent = `${score} / 3`;
       if (score === 0) {
         scoreCaptionEl.textContent = "Complete all scenarios to see your score.";
       } else if (score < 3) {
@@ -867,14 +866,14 @@
       const total = SCREENS.length;
       const ratio = (currentIndex) / (total - 1);
       const width = Math.max(10, ratio * 100);
-      progressFill.style.width = \`\${width}%\`;
+      progressFill.style.width = `${width}%`;
 
       if (screen.type === "intro") {
         progressLabel.textContent = "Intro";
       } else if (screen.type === "summary") {
         progressLabel.textContent = "Summary";
       } else {
-        progressLabel.textContent = \`Scenario \${screen.scenarioId} of 3\`;
+        progressLabel.textContent = `Scenario ${screen.scenarioId} of 3`;
       }
 
       renderScenarioMap();
@@ -883,18 +882,18 @@
 
     function renderIntroScreen(screen) {
       const wrapper = document.createElement("div");
-      wrapper.innerHTML = \`
-        <h2 class="screen-title">\${screen.title}</h2>
-        <p class="screen-subtitle">\${screen.subtitle}</p>
+      wrapper.innerHTML = `
+        <h2 class="screen-title">${screen.title}</h2>
+        <p class="screen-subtitle">${screen.subtitle}</p>
         <div class="screen-body">
-          <p>\${screen.body}</p>
-          <p>\${screen.extra}</p>
+          <p>${screen.body}</p>
+          <p>${screen.extra}</p>
           <p style="margin-top: 8px; font-size: 13px; color: #9ca3af;">
             In a production course, this sample could be extended with audio narration,
             branching by role, and links to your specific policy documents.
           </p>
         </div>
-      \`;
+      `;
       screenContainer.appendChild(wrapper);
     }
 
@@ -904,14 +903,14 @@
       const prevAnswer = answers[screen.scenarioId];
       const selectedId = prevAnswer ? prevAnswer.chosenId : null;
 
-      wrapper.innerHTML = \`
-        <h2 class="screen-title">\${screen.title}</h2>
-        <p class="screen-subtitle">\${screen.subtitle}</p>
+      wrapper.innerHTML = `
+        <h2 class="screen-title">${screen.title}</h2>
+        <p class="screen-subtitle">${screen.subtitle}</p>
         <div class="screen-body">
-          <p>\${screen.body}</p>
-          <p><strong>\${screen.question}</strong></p>
+          <p>${screen.body}</p>
+          <p><strong>${screen.question}</strong></p>
         </div>
-      \`;
+      `;
 
       const optionsDiv = document.createElement("div");
       optionsDiv.className = "options";
@@ -920,10 +919,10 @@
         const btn = document.createElement("button");
         btn.className = "option-btn";
         btn.dataset.optionId = option.id;
-        btn.innerHTML = \`
-          <span class="label">\${option.label}</span>
-          <span class="key">Option \${String.fromCharCode(65 + idx)}</span>
-        \`;
+        btn.innerHTML = `
+          <span class="label">${option.label}</span>
+          <span class="key">Option ${String.fromCharCode(65 + idx)}</span>
+        `;
 
         if (selectedId === option.id) {
           btn.classList.add("selected");
@@ -943,10 +942,10 @@
 
       const feedbackDiv = document.createElement("div");
       feedbackDiv.className = "feedback";
-      feedbackDiv.innerHTML = \`
+      feedbackDiv.innerHTML = `
         <div class="feedback-title">Feedback</div>
         <div class="feedback-body"></div>
-      \`;
+      `;
 
       if (prevAnswer) {
         feedbackDiv.classList.add("visible");
@@ -974,7 +973,7 @@
 
       // Mark selected
       const selectedBtn = optionsDiv.querySelector(
-        \`.option-btn[data-option-id="\${option.id}"]\`
+        `.option-btn[data-option-id="${option.id}"]`
       );
       selectedBtn.classList.add("selected");
       selectedBtn.classList.add(option.correct ? "correct" : "incorrect");
@@ -1004,21 +1003,21 @@
       const correct = score;
       const pct = Math.round((correct / total) * 100);
 
-      wrapper.innerHTML = \`
-        <h2 class="screen-title">\${screen.title}</h2>
-        <p class="screen-subtitle">\${screen.subtitle}</p>
+      wrapper.innerHTML = `
+        <h2 class="screen-title">${screen.title}</h2>
+        <p class="screen-subtitle">${screen.subtitle}</p>
         <div class="screen-body">
-          <p>\${screen.body}</p>
-          <p>\${screen.extra}</p>
+          <p>${screen.body}</p>
+          <p>${screen.extra}</p>
         </div>
         <div class="screen-body" style="margin-top: 12px;">
-          <p><strong>Your sample score: \${correct} out of \${total} (\${pct}%).</strong></p>
+          <p><strong>Your sample score: ${correct} out of ${total} (${pct}%).</strong></p>
           <p style="font-size: 13px; color: #9ca3af;">
             In a real deployment, this score could be sent to an LMS or learning
             record store (LRS) to demonstrate completion and track trends over time.
           </p>
         </div>
-      \`;
+      `;
 
       screenContainer.appendChild(wrapper);
     }
