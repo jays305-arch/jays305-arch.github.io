@@ -1,5 +1,5 @@
 
-Jason Smith – eLearning Developer Portfolio (GitHub Pages)
+Jason Scott Smith – eLearning Developer Portfolio (GitHub Pages)
 This package contains a full, production-ready GitHub Pages site scaffold.
 
 To publish:
@@ -12,4 +12,4 @@ Replace placeholder Storyline/Rise exports with your actual exported folders:
 - assets/samples/storyline/  -> Storyline export (ensure index.html inside)
 - assets/samples/rise/      -> Rise export (ensure index.html inside)
 
-Contact: youremail@example.com
+Contact: jays.305@gmail.com
