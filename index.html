@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +10,16 @@
 </head>
 
 <body>
-<header class="site-header">
+<header class="site-header glass-nav">
   <div class="container header-inner">
     <div class="brand">
       <img src="assets/logo/js-logo.svg" alt="JS Logo" class="logo" />
     </div>
     <nav class="nav">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
     </nav>
   </div>
 </header>
@@ -24,21 +28,21 @@
   <div class="container">
     <h1 class="hero-title">Jason Smith</h1>
     <p class="hero-sub">eLearning Developer • Instructional Designer • Accessibility Specialist</p>
-
-    <a class="btn-card" href="#projects">View Work</a>
-    <a class="btn-card" href="docs/JasonSmith_eLearningPortfolio.pdf" target="_blank">Download PDF</a>
+    <div class="hero-cta">
+      <a class="btn-card" href="#projects">View Work <span class="arrow">→</span></a>
+      <a class="btn-card ghost" href="docs/JasonSmith_eLearningPortfolio.pdf" target="_blank">
+        Download PDF <span class="arrow">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <main class="container main">
-
-  <!-- ABOUT -->
   <section id="about" class="card">
     <h2>About Me</h2>
     <p>I design and build accessible, SCORM/xAPI-compliant training using Articulate Storyline, Rise 360, and Adobe Creative Cloud. I translate complex subject matter into clean, interactive learning that meets Section 508 standards.</p>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="card">
     <h2>Core Skills</h2>
     <ul class="skill-grid">
@@ -51,66 +55,55 @@
     </ul>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="card">
     <h2>Project Samples</h2>
-
     <div class="projects-grid">
 
-      <!-- Storyline -->
       <article class="project-card">
+        <div class="badge-new">NEW</div>
         <h3>Interactive Storyline Scenario</h3>
         <p>Branching scenario with decision-driven outcomes and accessibility features.</p>
-        <a class="btn-card" href="assets/samples/storyline/index.html" target="_blank">Open Storyline Sample</a>
+        <a class="btn-card small" href="assets/samples/storyline/index.html" target="_blank">
+          Open Storyline Sample <span class="arrow">→</span>
+        </a>
       </article>
 
-      <!-- Rise -->
       <article class="project-card">
         <h3>Rise Microlearning Module</h3>
         <p>Responsive micro-course suitable for mobile and desktop learners.</p>
-        <a class="btn-card" href="assets/samples/rise/index.html" target="_blank">Open Rise Sample</a>
+        <a class="btn-card small" href="assets/samples/rise/index.html" target="_blank">
+          Open Rise Sample <span class="arrow">→</span>
+        </a>
       </article>
 
     </div>
   </section>
 
-  <!-- DOCUMENTS -->
   <section id="documents" class="card">
     <h2>Documents</h2>
     <p>Downloadable design artifacts demonstrating instructional strategy, ADDIE methodology, and compliance-focused microlearning design.</p>
 
     <div class="documents-grid">
 
-      <!-- Case Study -->
       <article class="doc-card">
-        <h3>Compliance Microlearning — Case Study</h3>
-        <p>Full 4-page case study showing ADDIE, storyboard design, and assessment blueprint.</p>
-        <a class="btn-card" href="docs/CaseStudy_Compliance_Microlearning.pdf" target="_blank">
-          View Case Study PDF
+        <div class="badge-new">NEW</div>
+        <h3>Compliance Microlearning — ADDIE Storyboard</h3>
+        <p>Storyboard + assessment blueprint covering vendor gifts, confidentiality, and accurate time reporting.</p>
+        <a class="btn-card small" href="docs/Compliance_Microlearning_ADDIE_Storyboard.pdf" target="_blank">
+          View Storyboard PDF <span class="arrow">→</span>
         </a>
       </article>
 
-      <!-- Storyboard -->
-      <article class="doc-card">
-        <h3>ADDIE Storyboard</h3>
-        <p>Storyboard + assessment blueprint covering three compliance scenarios.</p>
-        <a class="btn-card" href="docs/Compliance_Microlearning_ADDIE_Storyboard.pdf" target="_blank">
-          View Storyboard PDF
-        </a>
-      </article>
-
-      <!-- Portfolio PDF -->
       <article class="doc-card">
         <h3>eLearning Portfolio (PDF)</h3>
-        <p>One-page portfolio summary showcasing Storyline, Rise, and design doc samples.</p>
-        <a class="btn-card" href="docs/JasonSmith_eLearningPortfolio.pdf" target="_blank">
-          Download Portfolio PDF
+        <p>One-page portfolio summary showing Storyline, Rise, and ADDIE design work.</p>
+        <a class="btn-card small" href="docs/JasonSmith_eLearningPortfolio.pdf" target="_blank">
+          Download Portfolio PDF <span class="arrow">→</span>
         </a>
       </article>
 
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
