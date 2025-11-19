@@ -37,3 +37,52 @@ body.dark-mode .btn{background:#e2e8f0;color:#0b1220}
   .hero-title{font-size:1.8rem}
   .logo{height:40px}
 }
+/* DOCUMENTS SECTION — JAYSCOTTIA BRAND THEME */
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.doc-card {
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background: var(--card-bg, #f9fafb);
+  border: 1px solid #d0d7de;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+.doc-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: #0b1120; /* Jayscottia navy */
+}
+
+.doc-card p {
+  margin: 0.4rem 0;
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.doc-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #e5e7eb, #cbd5f5);
+  border: 1px solid #9ca3af;
+  color: #0b1120;
+  transition: 0.2s ease;
+}
+
+.doc-link:hover {
+  background: linear-gradient(135deg, #cbd5f5, #fbbf24); /* soft metallic accent */
+  border-color: #0b1120;
+  color: #0b1120;
+}
