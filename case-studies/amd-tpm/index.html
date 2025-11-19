@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Study – Silicon TPM: ASIC Architecture & Verification Alignment</title>
+<link rel="stylesheet" href="/styles.css" />
 
+<style>
+/* PAGE-SPECIFIC STYLING */
+.case-hero {
+  background: linear-gradient(135deg, #0b1220 0%, #1e293b 60%);
+  padding: 60px 0;
+  text-align: center;
+  color: white;
+}
+.case-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+.case-hero p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #cbd5e1;
+}
+.case-section {
+  background: var(--card);
+  padding: 26px 34px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+.badge-new {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  color: #0b1120;
+  margin-left: 8px;
+  font-weight: 700;
+}
+.artifact-btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#e2e8f0,#cbd5f5);
+  font-weight:600;
+  font-size:0.9rem;
+  border:1px solid #94a3b8;
+  color:#0b1120;
+  text-decoration:none;
+}
+.artifact-btn:hover {
+  background:linear-gradient(135deg,#cbd5f5,#fbbf24);
+  border-color:#0b1120;
+}
+.img-placeholder {
+  width:100%;
+  height:220px;
+  background:linear-gradient(135deg,#1e293b,#0b1220);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#94a3b8;
+  font-size:1.1rem;
+  letter-spacing:0.05em;
+  margin:16px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="/assets/logo/js-logo.svg" alt="JS Logo" class="logo" />
+    </div>
+  </div>
+</header>
+
+<section class="case-hero">
+  <h1>Technical Program Management Case Study: ASIC Architecture & Verification Alignment
+    <span class="badge-new">NEW</span>
+  </h1>
+  <p>A real-world simulation showing how a TPM drives predictability, risk reduction, and cross-functional execution across architecture, RTL, and verification teams.</p>
+</section>
+
+<main class="container main">
+
+<section class="case-section">
+  <h2>Project Overview</h2>
+  <p>This technical program scenario mirrors the workflow of AMD, NVIDIA, and Intel silicon organizations. It focuses on coordinating architecture, IP integration, and verification readiness—areas where TPM leadership directly impacts tape-out schedules, risk posture, and cross-team clarity.</p>
+
+  <div class="img-placeholder">Architecture Workflow Diagram Placeholder</div>
+</section>
+
+<section class="case-section">
+  <h2>1. Architecture Definition & Requirements Alignment</h2>
+  <p>In early-stage silicon development, requirements tend to shift rapidly. I established a structured architecture review cadence and created a decision-tracking matrix that preserved version control across evolving interface specs, performance targets, and feature tradeoffs.</p>
+
+  <ul>
+    <li>Established biweekly architecture governance review</li>
+    <li>Introduced a cross-team decision log to prevent spec drift</li>
+    <li>Mapped feature dependencies across GPU, Memory, IO, and Firmware teams</li>
+  </ul>
+
+  <div class="img-placeholder">Spec Traceability Matrix Visualization</div>
+</section>
+
+<section class="case-section">
+  <h2>2. IP Integration Planning & Block-Level Coordination</h2>
+  <p>Silicon programs often fail due to unmanaged cross-team dependencies. I implemented a structured dependency tracking system inspired by AMD’s internal “IP Readiness” models.</p>
+
+  <ul>
+    <li>Tracked 22 IP blocks across design, verification, and external vendors</li>
+    <li>Created a readiness scoring model aligned to G2/G3 deliverables</li>
+    <li>Improved delivery predictability by 34% (simulated case)</li>
+  </ul>
+
+  <div class="img-placeholder">IP Dependency Dashboard Placeholder</div>
+</section>
+
+<section class="case-section">
+  <h2>3. Verification Readiness & G3 Gate Preparation</h2>
+  <p>Verification was the highest risk area. I developed an automated dashboard for testplan coverage, model availability, and priority bug trends.</p>
+
+  <ul>
+    <li>Testplan and coverage tracker aligned to verification owners</li>
+    <li>Bug triage workflow across design and verification</li>
+    <li>Introduced “pre-G3 checklist” for predictable gate execution</li>
+  </ul>
+
+  <div class="img-placeholder">Verification Coverage Trend Chart</div>
+</section>
+
+<section class="case-section">
+  <h2>4. Risk Register & Mitigation Strategy</h2>
+  <p>I maintained a silicon-specific risk register focused on architectural churn, late IP delivery, verification gaps, and timing closure issues. This register fed directly into the leadership scorecard used for weekly status reviews.</p>
+
+  <a class="artifact-btn" href="/docs/ASIC_RiskRegister_Template.xlsx" target="_blank">Download Risk Register</a>
+</section>
+
+<section class="case-section">
+  <h2>5. Final Outcomes</h2>
+  <p>This case study illustrates how silicon TPM practices improve predictability and reduce tape-out risk. Results include:</p>
+  <ul>
+    <li>Improved G3 readiness by enforcing structured checklists</li>
+    <li>Reduced late-stage blockers through weekly architectural governance</li>
+    <li>Documentation that ensured clean handoff across RTL, Verification, and PD</li>
+  </ul>
+
+  <a class="artifact-btn" href="/docs/AMD_TPM_CaseStudy.pdf" target="_blank">Download Full Case Study (PDF)</a>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© Jason S Smith — 2025 • <a href="mailto:jays.305@gmail.com">jays.305@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
