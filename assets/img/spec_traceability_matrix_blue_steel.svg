@@ -1,78 +1,95 @@
-<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="traceTitle traceDesc">
-  <title id="traceTitle">Specification traceability matrix</title>
-  <desc id="traceDesc">Blue-Steel table linking requirements to architecture owners, IP blocks, verification artifacts, and coverage status.</desc>
-  <defs>
-    <linearGradient id="bgGradT" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0f14"/>
-      <stop offset="100%" stop-color="#2d3a45"/>
-    </linearGradient>
-    <filter id="panelShadowT" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.55"/>
-    </filter>
-  </defs>
+<svg width="980" height="280" viewBox="0 0 980 280"
+xmlns="http://www.w3.org/2000/svg" role="img"
+aria-labelledby="traceTitle traceDesc">
 
-  <rect x="0" y="0" width="900" height="260" fill="url(#bgGradT)"/>
+<title id="traceTitle">Specification traceability matrix</title>
+<desc id="traceDesc">Blue-Steel table linking requirements to architecture owners, IP blocks, verification artifacts, and coverage status — corrected layout.</desc>
 
-  <g filter="url(#panelShadowT)">
-    <rect x="28" y="26" width="844" height="208" rx="16" fill="#0f1720" stroke="#d9e2ec" stroke-opacity="0.18"/>
+<defs>
+  <linearGradient id="bgGradT" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0a0f14"/>
+    <stop offset="100%" stop-color="#2d3a45"/>
+  </linearGradient>
+  <filter id="panelShadowT" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="10" stdDeviation="10"
+      flood-color="#000" flood-opacity="0.55"/>
+  </filter>
+</defs>
 
-    <text x="52" y="56" fill="#e5e7eb" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="600">
-      Spec Traceability Matrix
-    </text>
-    <text x="52" y="76" fill="#9ca3af" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12">
-      Requirements mapped to architecture owners, IP blocks, and verification artifacts with coverage status.
-    </text>
+<rect x="0" y="0" width="980" height="280" fill="url(#bgGradT)"/>
 
-    <!-- Header -->
-    <rect x="52" y="92" width="780" height="26" rx="6" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+<g filter="url(#panelShadowT)">
+  <rect x="24" y="22" width="932" height="236" rx="16"
+    fill="#0f1720" stroke="#d9e2ec" stroke-opacity="0.18"/>
 
-    <text x="70"  y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">REQ ID</text>
-    <text x="150" y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">Requirement Summary</text>
-    <text x="370" y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">Arch Owner</text>
-    <text x="460" y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">IP Block</text>
-    <text x="560" y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">Verification</text>
-    <text x="700" y="109" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">Status</text>
+  <text x="48" y="52" fill="#e5e7eb"
+    font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+    font-size="18" font-weight="600">
+    Spec Traceability Matrix
+  </text>
+  <text x="48" y="72" fill="#9ca3af"
+    font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+    font-size="12">
+    Requirements mapped to architecture owners, IP blocks, and verification artifacts.
+  </text>
 
-    <!-- Row 1 -->
-    <rect x="52" y="122" width="780" height="24" fill="#020617" opacity="0.9"/>
-    <text x="70"  y="138" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">REQ-001</text>
-    <text x="150" y="138" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      Peak bandwidth for GPU memory path
-    </text>
-    <text x="370" y="138" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Arch-GPU</text>
-    <text x="460" y="138" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">GPU Core</text>
-    <text x="560" y="138" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      Perf test PT-01, coverage COV_MEM
-    </text>
-    <rect x="690" y="126" width="70" height="16" rx="8" fill="#16a34a"/>
-    <text x="725" y="137" text-anchor="middle" fill="#020617" font-size="9" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">COVERED</text>
+  <!-- Header -->
+  <rect x="48" y="92" width="880" height="28" rx="6"
+    fill="#111827" stroke="#1f2937" stroke-width="1"/>
 
-    <!-- Row 2 -->
-    <rect x="52" y="146" width="780" height="24" fill="#020617" opacity="0.9"/>
-    <text x="70"  y="162" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">REQ-014</text>
-    <text x="150" y="162" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      Secure boot path integrity checks
-    </text>
-    <text x="370" y="162" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Arch-Security</text>
-    <text x="460" y="162" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Security</text>
-    <text x="560" y="162" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      SV test TB_SEC_02, assertions A_SEC_BOOT
-    </text>
-    <rect x="690" y="150" width="70" height="16" rx="8" fill="#fbbf24"/>
-    <text x="725" y="161" text-anchor="middle" fill="#020617" font-size="9" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">IN PROGRESS</text>
+  <!-- Column labels with updated spacing -->
+  <text x="68"   y="109" fill="#e5e7eb" font-size="10" font-weight="600">REQ ID</text>
+  <text x="158"  y="109" fill="#e5e7eb" font-size="10" font-weight="600">Requirement Summary</text>
+  <text x="395"  y="109" fill="#e5e7eb" font-size="10" font-weight="600">Arch Owner</text>
+  <text x="485"  y="109" fill="#e5e7eb" font-size="10" font-weight="600">IP Block</text>
+  <text x="600"  y="109" fill="#e5e7eb" font-size="10" font-weight="600">Verification</text>
+  <text x="790"  y="109" fill="#e5e7eb" font-size="10" font-weight="600">Status</text>
 
-    <!-- Row 3 -->
-    <rect x="52" y="170" width="780" height="24" fill="#020617" opacity="0.9"/>
-    <text x="70"  y="186" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">REQ-023</text>
-    <text x="150" y="186" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      PCIe latency budget for IO transactions
-    </text>
-    <text x="370" y="186" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Arch-IO</text>
-    <text x="460" y="186" fill="#e5e7eb" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">IO / SerDes</text>
-    <text x="560" y="186" fill="#cbd5f5" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-      Latency tests LT-03, coverage COV_IO_LAT
-    </text>
-    <rect x="690" y="174" width="70" height="16" rx="8" fill="#ef4444"/>
-    <text x="725" y="185" text-anchor="middle" fill="#f9fafb" font-size="9" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">GAP</text>
-  </g>
+  <!-- Row 1 -->
+  <rect x="48" y="120" width="880" height="28" fill="#020617" opacity="0.9"/>
+  <text x="68"  y="138" fill="#e5e7eb" font-size="10">REQ-001</text>
+  <text x="158" y="138" fill="#cbd5f5" font-size="10">Peak bandwidth for GPU memory path</text>
+  <text x="395" y="138" fill="#e5e7eb" font-size="10">Arch-GPU</text>
+  <text x="485" y="138" fill="#e5e7eb" font-size="10">GPU Core</text>
+
+  <!-- Verification wrapped -->
+  <text x="600" y="134" fill="#cbd5f5" font-size="10">
+    <tspan x="600" dy="0">Perf test PT-01,</tspan>
+    <tspan x="600" dy="12">coverage COV_MEM</tspan>
+  </text>
+
+  <rect x="770" y="128" width="90" height="16" rx="8" fill="#16a34a"/>
+  <text x="815" y="139" text-anchor="middle" fill="#020617" font-size="9" font-weight="600">COVERED</text>
+
+  <!-- Row 2 -->
+  <rect x="48" y="148" width="880" height="28" fill="#020617" opacity="0.9"/>
+  <text x="68"  y="166" fill="#e5e7eb" font-size="10">REQ-014</text>
+  <text x="158" y="166" fill="#cbd5f5" font-size="10">Secure boot path integrity checks</text>
+  <text x="395" y="166" fill="#e5e7eb" font-size="10">Arch-Security</text>
+  <text x="485" y="166" fill="#e5e7eb" font-size="10">Security</text>
+
+  <text x="600" y="162" fill="#cbd5f5" font-size="10">
+    <tspan x="600" dy="0">SV test TB_SEC_02,</tspan>
+    <tspan x="600" dy="12">assertions A_SEC_BOOT</tspan>
+  </text>
+
+  <rect x="770" y="156" width="90" height="16" rx="8" fill="#fbbf24"/>
+  <text x="815" y="167" text-anchor="middle" fill="#020617" font-size="9" font-weight="600">IN PROGRESS</text>
+
+  <!-- Row 3 -->
+  <rect x="48" y="176" width="880" height="28" fill="#020617" opacity="0.9"/>
+  <text x="68"  y="194" fill="#e5e7eb" font-size="10">REQ-023</text>
+  <text x="158" y="194" fill="#cbd5f5" font-size="10">PCIe latency budget for IO transactions</text>
+  <text x="395" y="194" fill="#e5e7eb" font-size="10">Arch-IO</text>
+  <text x="485" y="194" fill="#e5e7eb" font-size="10">IO / SerDes</text>
+
+  <text x="600" y="190" fill="#cbd5f5" font-size="10">
+    <tspan x="600" dy="0">Latency tests LT-03,</tspan>
+    <tspan x="600" dy="12">coverage COV_IO_LAT</tspan>
+  </text>
+
+  <rect x="770" y="184" width="90" height="16" rx="8" fill="#ef4444"/>
+  <text x="815" y="195" text-anchor="middle" fill="#f9fafb" font-size="9" font-weight="600">GAP</text>
+
+</g>
 </svg>
