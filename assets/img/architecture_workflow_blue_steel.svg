@@ -1,0 +1,15 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+    
+<defs>
+  <linearGradient id="blueSteel" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#2d3a45"/>
+    <stop offset="50%" stop-color="#0ea5e9"/>
+    <stop offset="100%" stop-color="#0a0f14"/>
+  </linearGradient>
+</defs>
+
+    <rect width="1200" height="600" fill="url(#blueSteel)" rx="20"/>
+    <text x="50%" y="50%" font-size="42" fill="#d9e2ec" font-family="Arial" text-anchor="middle">
+      Architecture Workflow – Blue Steel
+    </text>
+</svg>
