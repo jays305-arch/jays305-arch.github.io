@@ -1,15 +1,81 @@
-<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
-    
-<defs>
-  <linearGradient id="blueSteel" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#2d3a45"/>
-    <stop offset="50%" stop-color="#0ea5e9"/>
-    <stop offset="100%" stop-color="#0a0f14"/>
-  </linearGradient>
-</defs>
+<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="verifTitle verifDesc">
+  <title id="verifTitle">Verification coverage dashboard by IP block</title>
+  <desc id="verifDesc">Blue-Steel dashboard showing functional and code coverage for several IP blocks, with a G3 readiness target line.</desc>
+  <defs>
+    <linearGradient id="bgGradV" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f14"/>
+      <stop offset="100%" stop-color="#2d3a45"/>
+    </linearGradient>
+    <linearGradient id="barGradFunc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="barGradCode" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <filter id="panelShadowV" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
 
-    <rect width="1200" height="600" fill="url(#blueSteel)" rx="20"/>
-    <text x="50%" y="50%" font-size="42" fill="#d9e2ec" font-family="Arial" text-anchor="middle">
-      Verification Dashboard – Blue Steel
+  <rect x="0" y="0" width="900" height="260" fill="url(#bgGradV)"/>
+
+  <g filter="url(#panelShadowV)">
+    <rect x="28" y="26" width="844" height="208" rx="16" fill="#0f1720" stroke="#d9e2ec" stroke-opacity="0.18"/>
+
+    <text x="52" y="56" fill="#e5e7eb" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="600">
+      Verification Coverage – G3 Readiness Snapshot
     </text>
+    <text x="52" y="76" fill="#9ca3af" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12">
+      Functional vs. code coverage percentages for key IP blocks against the G3 target line.
+    </text>
+
+    <!-- Axes -->
+    <line x1="90" y1="190" x2="740" y2="190" stroke="#4b5563" stroke-width="1.2"/>
+    <line x1="90" y1="110" x2="90" y2="190" stroke="#4b5563" stroke-width="1.2"/>
+
+    <!-- Y-axis labels -->
+    <text x="72" y="193" text-anchor="end" fill="#9ca3af" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">0%</text>
+    <text x="72" y="171" text-anchor="end" fill="#9ca3af" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">50%</text>
+    <text x="72" y="149" text-anchor="end" fill="#9ca3af" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">75%</text>
+    <text x="72" y="127" text-anchor="end" fill="#d9e2ec" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">90%+</text>
+
+    <!-- Grid lines -->
+    <line x1="90" y1="170" x2="740" y2="170" stroke="#1f2933" stroke-dasharray="3,4" stroke-width="0.7"/>
+    <line x1="90" y1="148" x2="740" y2="148" stroke="#1f2933" stroke-dasharray="3,4" stroke-width="0.7"/>
+    <line x1="90" y1="126" x2="740" y2="126" stroke="#1f2933" stroke-dasharray="3,4" stroke-width="0.7"/>
+
+    <!-- Bars (GPU, Memory, IO, Security) -->
+    <!-- GPU -->
+    <rect x="130" y="132" width="38" height="58" fill="url(#barGradFunc)" rx="5"/>
+    <rect x="174" y="144" width="38" height="46" fill="url(#barGradCode)" rx="5"/>
+    <text x="155" y="205" text-anchor="middle" fill="#e5e7eb" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">GPU</text>
+
+    <!-- Memory -->
+    <rect x="290" y="126" width="38" height="64" fill="url(#barGradFunc)" rx="5"/>
+    <rect x="334" y="136" width="38" height="54" fill="url(#barGradCode)" rx="5"/>
+    <text x="315" y="205" text-anchor="middle" fill="#e5e7eb" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Memory</text>
+
+    <!-- IO -->
+    <rect x="450" y="140" width="38" height="50" fill="url(#barGradFunc)" rx="5"/>
+    <rect x="494" y="152" width="38" height="38" fill="url(#barGradCode)" rx="5"/>
+    <text x="475" y="205" text-anchor="middle" fill="#e5e7eb" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">IO</text>
+
+    <!-- Security -->
+    <rect x="610" y="144" width="38" height="46" fill="url(#barGradFunc)" rx="5"/>
+    <rect x="654" y="158" width="38" height="32" fill="url(#barGradCode)" rx="5"/>
+    <text x="635" y="205" text-anchor="middle" fill="#e5e7eb" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Security</text>
+
+    <!-- Legends -->
+    <rect x="770" y="120" width="18" height="10" fill="url(#barGradFunc)" rx="3"/>
+    <text x="794" y="128" fill="#d9e2ec" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Functional</text>
+
+    <rect x="770" y="140" width="18" height="10" fill="url(#barGradCode)" rx="3"/>
+    <text x="794" y="148" fill="#d9e2ec" font-size="11" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Code</text>
+
+    <!-- G3 target -->
+    <line x1="90" y1="132" x2="740" y2="132" stroke="#fbbf24" stroke-dasharray="4,3" stroke-width="1.2"/>
+    <text x="744" y="130" fill="#fbbf24" font-size="10" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">G3 target</text>
+  </g>
 </svg>
