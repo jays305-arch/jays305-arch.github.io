@@ -1,15 +1,112 @@
-<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
-    
-<defs>
-  <linearGradient id="blueSteel" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#2d3a45"/>
-    <stop offset="50%" stop-color="#0ea5e9"/>
-    <stop offset="100%" stop-color="#0a0f14"/>
-  </linearGradient>
-</defs>
+<svg width="1100" height="360" viewBox="0 0 1100 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">ASIC Architecture Workflow – From Top-Level Architecture to Validation Readiness</title>
+  <desc id="archDesc">Diagram showing the flow from top-level architecture, to IP specs, integration planning, block-level interfaces, firmware and hardware co-design, and validation readiness.</desc>
+  <defs>
+    <linearGradient id="bgArch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f14"/>
+      <stop offset="100%" stop-color="#2d3a45"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#d9e2ec"/>
+    </linearGradient>
+    <marker id="arrowHeadArch" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#38bdf8"/>
+    </marker>
+    <filter id="panelShadowArch" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
 
-    <rect width="1200" height="600" fill="url(#blueSteel)" rx="20"/>
-    <text x="50%" y="50%" font-size="42" fill="#d9e2ec" font-family="Arial" text-anchor="middle">
-      Architecture Workflow – Blue Steel
+  <rect x="0" y="0" width="1100" height="360" fill="url(#bgArch)"/>
+
+  <g filter="url(#panelShadowArch)">
+    <rect x="40" y="32" width="1020" height="296" rx="20" fill="#0b1220" stroke="#d9e2ec" stroke-opacity="0.18"/>
+
+    <text x="70" y="70" fill="#e5e7eb" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20" font-weight="600">
+      Architecture Workflow – From Concept to Validation Readiness
     </text>
+    <text x="70" y="92" fill="#9ca3af" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12">
+      High-level TPM view of how top-level architecture decisions flow into IP specifications, interfaces, and validation readiness.
+    </text>
+
+    <!-- Nodes -->
+    <!-- 1: Top-Level Architecture -->
+    <g>
+      <rect x="60" y="130" width="160" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="140" y="154" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        Top-Level
+      </text>
+      <text x="140" y="172" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Architecture
+      </text>
+    </g>
+
+    <!-- 2: IP Specs -->
+    <g>
+      <rect x="250" y="130" width="160" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="330" y="154" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        IP Specs
+      </text>
+      <text x="330" y="172" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Perf, power, interfaces
+      </text>
+    </g>
+
+    <!-- 3: Integration Planning -->
+    <g>
+      <rect x="440" y="130" width="180" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="530" y="154" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        Integration Planning
+      </text>
+      <text x="530" y="172" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Dependencies &amp; G2/G3 readiness
+      </text>
+    </g>
+
+    <!-- 4: Block-Level Interfaces -->
+    <g>
+      <rect x="650" y="130" width="190" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="745" y="154" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        Block-Level Interfaces
+      </text>
+      <text x="745" y="172" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Signals, protocols, timing
+      </text>
+    </g>
+
+    <!-- 5: Firmware / HW Co-Design -->
+    <g>
+      <rect x="150" y="230" width="240" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="270" y="254" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        Firmware / HW Co-Design
+      </text>
+      <text x="270" y="272" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Boot flows, control, diagnostics
+      </text>
+    </g>
+
+    <!-- 6: Validation Readiness -->
+    <g>
+      <rect x="470" y="230" width="220" height="70" rx="14" fill="#111827" stroke="#38bdf8" stroke-width="1.4"/>
+      <text x="580" y="254" text-anchor="middle" fill="#e5e7eb" font-size="13" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-weight="600">
+        Validation Readiness
+      </text>
+      <text x="580" y="272" text-anchor="middle" fill="#cbd5f5" font-size="12" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        Testplans, coverage targets, labs
+      </text>
+    </g>
+
+    <!-- Arrows main row -->
+    <line x1="220" y1="165" x2="250" y2="165" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowHeadArch)"/>
+    <line x1="410" y1="165" x2="440" y2="165" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowHeadArch)"/>
+    <line x1="620" y1="165" x2="650" y2="165" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowHeadArch)"/>
+
+    <!-- Arrow down from Block-Level Interfaces to FW/HW Co-Design -->
+    <line x1="745" y1="200" x2="745" y2="230" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowHeadArch)"/>
+
+    <!-- Arrow from FW/HW Co-Design to Validation Readiness -->
+    <line x1="390" y1="265" x2="470" y2="265" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowHeadArch)"/>
+  </g>
 </svg>
