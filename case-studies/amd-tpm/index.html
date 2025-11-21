@@ -1,82 +1,230 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='UTF-8' />
-<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Case Study – Silicon TPM: ASIC Architecture & Verification Alignment</title>
-<link rel='stylesheet' href='/styles.css' />
+<link rel="stylesheet" href="/styles.css" />
+
+<style>
+  .case-hero {
+    background: linear-gradient(135deg, #0b1220 0%, #1e293b 60%);
+    padding: 60px 0;
+    text-align: center;
+    color: #e5e7eb;
+  }
+  .case-hero h1 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+  }
+  .case-hero p {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: #cbd5e1;
+  }
+  .case-section {
+    background: var(--card, #ffffff);
+    padding: 26px 34px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  }
+  body.dark-mode .case-section {
+    background: #0f1720;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.6);
+  }
+  .case-section h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .case-section p {
+    margin-top: 4px;
+    margin-bottom: 10px;
+  }
+  .img-figure {
+    margin: 14px 0 4px;
+  }
+  .img-figure img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    display: block;
+  }
+  .img-figure figcaption {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+  body.dark-mode .img-figure figcaption {
+    color: #94a3b8;
+  }
+  .artifact-btn {
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 16px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#e2e8f0,#cbd5f5);
+    font-weight:600;
+    font-size:0.9rem;
+    border:1px solid #94a3b8;
+    color:#0b1120;
+    text-decoration:none;
+  }
+  .artifact-btn:hover {
+    background:linear-gradient(135deg,#cbd5f5,#fbbf24);
+    border-color:#0b1120;
+  }
+</style>
 </head>
+
 <body>
-<header class='site-header'>
-  <div class='container header-inner'>
-    <div class='brand'>
-      <img src='/assets/logo/js-logo.svg' alt='JS Logo' class='logo' />
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="/assets/logo/js-logo.svg" alt="JS Logo" class="logo" />
     </div>
   </div>
 </header>
 
-<section class='case-hero'>
+<section class="case-hero">
   <h1>Technical Program Management Case Study: ASIC Architecture & Verification Alignment</h1>
-  <p>A real-world simulation showing TPM-driven predictability across architecture, RTL, and verification teams.</p>
+  <p>
+    A silicon TPM case study simulating how a program manager drives predictability, risk reduction,
+    and cross-functional alignment across top-level architecture, IP integration, and verification readiness.
+  </p>
 </section>
 
-<main class='container main'>
+<main class="container main">
 
-<section class='case-section'>
-  <h2>Project Overview</h2>
-  <p>This technical program scenario mirrors the workflow of AMD/NVIDIA silicon organizations.</p>
+  <!-- Project Overview + Architecture Workflow -->
+  <section class="case-section">
+    <h2>Project Overview</h2>
+    <p>
+      This scenario mirrors a GPU / SoC-style program in an AMD / NVIDIA / Intel environment. The focus is on
+      keeping architecture intent, IP integration, and verification aligned so G3 readiness is predictable rather
+      than reactive. The diagram below shows the end-to-end architecture workflow you would inherit as a silicon TPM.
+    </p>
 
-  <figure class='img-figure'>
-    <img src='/assets/img/architecture_workflow_blue_steel.svg' alt='Architecture workflow diagram.' />
-    <figcaption>Architecture Workflow — Blue-Steel theme.</figcaption>
-  </figure>
-</section>
+    <figure class="img-figure">
+      <img src="/assets/img/architecture_workflow_blue_steel.svg"
+           alt="Architecture workflow showing top-level architecture flowing into IP specs, integration planning, block-level interfaces, firmware and hardware co-design, and validation readiness." />
+      <figcaption>
+        Architecture Workflow — from top-level architecture through IP specs, integration planning, block-level
+        interfaces, FW/HW co-design, and ultimately validation readiness.
+      </figcaption>
+    </figure>
+  </section>
 
-<section class='case-section'>
-  <h2>1. Architecture Definition & Requirements Alignment</h2>
-  <p>Structured architecture governance and requirements control.</p>
+  <!-- Section 1: Architecture Definition & Spec Traceability -->
+  <section class="case-section">
+    <h2>1. Top-Level Architecture & IP Spec Alignment</h2>
+    <p>
+      Early in the program, architecture and requirements change quickly. As TPM, I put structure around the churn:
+      we lock an architecture review cadence, track decision history, and maintain a living spec traceability view.
+    </p>
+    <ul>
+      <li>Biweekly architecture governance review with clear owners and decision logs.</li>
+      <li>Traceability between performance requirements, IP ownership, and verification targets.</li>
+      <li>Visibility for leadership into which requirements are covered vs. still at risk.</li>
+    </ul>
 
-  <figure class='img-figure'>
-    <img src='/assets/img/spec_traceability_matrix_blue_steel.svg' alt='Spec traceability matrix.' />
-    <figcaption>Spec Traceability Matrix — Requirements to verification mapping.</figcaption>
-  </figure>
-</section>
+    <figure class="img-figure">
+      <img src="/assets/img/spec_traceability_matrix_blue_steel.svg"
+           alt="Spec traceability matrix linking requirement IDs to architecture owners, IP blocks, verification artifacts, and coverage status tags." />
+      <figcaption>
+        Spec Traceability Matrix — mapping requirements to architecture owners, IP blocks, and verification artifacts
+        with a simple status band (covered, in-progress, gap).
+      </figcaption>
+    </figure>
+  </section>
 
-<section class='case-section'>
-  <h2>2. IP Integration Planning & Block-Level Coordination</h2>
-  <p>Managing dependency tracking across 22 IPs.</p>
+  <!-- Section 2: IP Integration Planning & Dependency Dashboard -->
+  <section class="case-section">
+    <h2>2. IP Integration Planning & Dependency Management</h2>
+    <p>
+      The biggest failure mode in silicon programs is unmanaged dependencies. Here, I use a dependency dashboard to
+      track readiness scores for key IPs — GPU, Memory, IO, Security — and visualize how they converge into SoC top.
+    </p>
+    <ul>
+      <li>Readiness scoring for each IP (R-score) feeding into G2/G3 gate prep.</li>
+      <li>Clear upstream / downstream relationships into the SoC top integration hub.</li>
+      <li>Early visibility of which IPs are gating system-level validation.</li>
+    </ul>
 
-  <figure class='img-figure'>
-    <img src='/assets/img/ip_dependency_dashboard_blue_steel.svg' alt='IP dependency dashboard.' />
-    <figcaption>IP Dependency Dashboard — Blue-Steel visualization.</figcaption>
-  </figure>
-</section>
+    <figure class="img-figure">
+      <img src="/assets/img/ip_dependency_dashboard_blue_steel.svg"
+           alt="IP dependency dashboard showing GPU, Memory, IO, and Security IP blocks feeding into the SoC top node with readiness scores." />
+      <figcaption>
+        IP Dependency &amp; Readiness Dashboard — Blue-Steel visualization of IP readiness
+        (R-scores) and their linkage into the SoC integration path.
+      </figcaption>
+    </figure>
+  </section>
 
-<section class='case-section'>
-  <h2>3. Verification Readiness & G3 Gate Preparation</h2>
-  <p>Verification dashboard for testplan coverage, availability, and bug metrics.</p>
+  <!-- Section 3: Verification Readiness & G3 Gate Preparation -->
+  <section class="case-section">
+    <h2>3. Verification Readiness & G3 Gate Preparation</h2>
+    <p>
+      Verification is the highest schedule and quality risk. I treat the verification dashboard as a program heartbeat:
+      it aggregates functional and code coverage, ties them to IPs, and compares them to the G3 target line.
+    </p>
+    <ul>
+      <li>Functional + code coverage by IP, with a clear G3 threshold line.</li>
+      <li>Used weekly to drive triage and focus on coverage gaps before gate review.</li>
+      <li>Feeds directly into risk register entries for late coverage or missing tests.</li>
+    </ul>
 
-  <figure class='img-figure'>
-    <img src='/assets/img/verification_dashboard_blue_steel.svg' alt='Verification dashboard.' />
-    <figcaption>Verification Coverage Dashboard — Blue-Steel theme.</figcaption>
-  </figure>
-</section>
+    <figure class="img-figure">
+      <img src="/assets/img/verification_dashboard_blue_steel.svg"
+           alt="Verification coverage dashboard chart plotting functional and code coverage by IP block and a G3 readiness target line." />
+      <figcaption>
+        Verification Coverage Dashboard — IP-by-IP view of functional and code coverage against the G3 readiness target.
+      </figcaption>
+    </figure>
+  </section>
 
-<section class='case-section'>
-  <h2>4. Risk Register</h2>
-  <p>Silicon-specific risk tracking.</p>
-</section>
+  <!-- Section 4: Risk Register & Mitigation Strategy -->
+  <section class="case-section">
+    <h2>4. Risk Register & Mitigation Strategy</h2>
+    <p>
+      All of the dashboards above roll into a structured risk register focused on architectural churn, late IP delivery,
+      verification gaps, and timing closure issues. This register is what leadership actually consumes week to week.
+    </p>
+    <ul>
+      <li>Risks tagged by owner, impact, likelihood, and affected G-milestones.</li>
+      <li>Direct trace from risk entries to coverage, IP readiness, or spec gaps.</li>
+      <li>Mitigation plans with dates that can be tracked like any other deliverable.</li>
+    </ul>
 
-<section class='case-section'>
-  <h2>5. Final Outcomes</h2>
-  <p>Improved G3 readiness and predictable execution.</p>
-</section>
+    <a class="artifact-btn" href="/docs/ASIC_RiskRegister_Template.xlsx" target="_blank">
+      Download Risk Register Template
+    </a>
+  </section>
+
+  <!-- Section 5: Final Outcomes & Case Study PDF -->
+  <section class="case-section">
+    <h2>5. Final Outcomes & Case Study PDF</h2>
+    <p>
+      In this simulated program, applying this TPM approach to architecture, integration, and verification produced
+      three main outcomes:
+    </p>
+    <ul>
+      <li>Predictable G3 gate with clear evidence and fewer last-minute “heroics”.</li>
+      <li>Reduced late-stage blockers through governance around architecture changes and IP readiness.</li>
+      <li>Reusable dashboards and templates that can be pulled into future silicon programs or reused across lines of business.</li>
+    </ul>
+
+    <a class="artifact-btn" href="/docs/AMD_TPM_CaseStudy.pdf" target="_blank">
+      Download Full Case Study (PDF)
+    </a>
+  </section>
 
 </main>
 
-<footer class='site-footer'>
-  <div class='container'>
-    <p>© Jason S Smith — 2025</p>
+<footer class="site-footer">
+  <div class="container">
+    <p>© Jason S Smith — 2025 • <a href="mailto:jays.305@gmail.com">jays.305@gmail.com</a></p>
   </div>
 </footer>
 
